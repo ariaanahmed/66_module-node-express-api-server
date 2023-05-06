@@ -1,21 +1,25 @@
 const express = require('express');
 const app = express()
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
+const cors = require('cors');
 
 const users = [
-    {name: 'shabana', gmail: 'shabana24@gmail.com'},
-    {name: 'jashim', gmail: 'jashim24@gmail.com'},
-    {name: 'Alamgir', gmail: 'Alamgir24@gmail.com'},
-]
+    {name: 'Shabana', gmail: 'shabana@gmail.com'},
+    {name: 'Shakib', gmail: 'shakib@gmail.com'},
+    {name: 'Jashim', gmail: 'jashim@gmail.com'},
+    {name: 'Alamgir', gmail: 'alamgir@gmail.com'},
+];
+
+app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send('mySrver Running')
+    res.send('This server is running');
 })
 
 app.get('/users', (req, res) => {
     res.send(users)
 })
 
-app.listen(port,() => {
-    console.log(`server is running on port ${port}`)
+app.listen(port, () => {
+    console.log(`app listening on port: ${port}`)
 })

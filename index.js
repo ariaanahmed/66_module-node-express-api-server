@@ -1,7 +1,9 @@
-const express = require('express');
-const app = express()
+const express = require('express')
+const app = express();
+
 const port = process.env.PORT || 3000;
-const cors = require('cors');
+
+const cors = require('cors')
 
 const users = [
     {id: 1, name: 'Shabana', email: 'shabana@gmail.com'},
@@ -10,10 +12,11 @@ const users = [
     {id: 4, name: 'Alamgir', email: 'alamgir@gmail.com'},
 ];
 
-app.use(cors());
+app.use(cors())
+app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send('This server is running');
+    res.send('manegement server is running')
 })
 
 app.get('/users', (req, res) => {
@@ -21,11 +24,14 @@ app.get('/users', (req, res) => {
 })
 
 app.post('/users', (req, res) => {
-
-    console.log('post api hiting')
     console.log(req.body)
+
+    const newUser = req.body
+    newUser.id = users.length + 1;
+    users.push(newUser)
+    res.send(newUser)
 })
 
 app.listen(port, () => {
-    console.log(`app listening on port: ${port}`)
+    console.log(`menegement server is listening from port: ${port}`)
 })
